@@ -10,7 +10,7 @@
 
     <div class="form-group">
         {{Form::label('title', 'Title')}}
-        {!! Form::textarea('body',$post->body, ['id'=> 'editor1','class' => 'form-control', 'placeholder' => 'Body text']) !!}
+        {!! Form::textarea('body',$post->body, ['id'=> 'editor','class' => 'form-control', 'placeholder' => 'Body text']) !!}
 
     </div>
 
