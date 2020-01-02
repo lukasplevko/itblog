@@ -18,6 +18,7 @@ Route::get('/services', 'PagesController@services');
 
 Route::resource('posts', 'PostsController');
 
+
 Route::get('/logout', 'Auth\LoginController@logout');
 
 Auth::routes();

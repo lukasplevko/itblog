@@ -4,8 +4,11 @@
 <h1>{{$post->title}}</h1>
 <img style="width:100%" src="/storage/cover_images/{{$post->cover_image}}" alt="">
 <br><br>
-{!!$post->body!!}
-<small>{{$post->created_at}} by {{$post->user->name}}</small>
+<div class="col-md-8">
+    {!!$post->body!!}
+</div>
+
+<small>{{$post->created_at}} by  <a href="#">{{$post->user->name}}</a> </small>
 <hr>
 
 @if(Auth::user() == $post->user)

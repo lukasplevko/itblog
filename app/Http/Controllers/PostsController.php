@@ -59,7 +59,9 @@ class PostsController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
-            'cover_image' => 'image|nullable|max:1999'
+            'cover_image' => 'image|nullable|max:1999',
+            'post_description' => 'nullable'
+
         ]);
 
         //Spracovanie uploadovaného suboru
@@ -87,6 +89,7 @@ class PostsController extends Controller
         $post = new Post;
         $post->title =  $request->input('title');
         $post->body = $request->input('body');
+        $post->post_description = $request->input('post_description', false);
         $post->user_id = auth()->user()->id;
         $post->cover_image = $fileNameToStore;
         $post->save();
@@ -136,7 +139,8 @@ class PostsController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
-            'body' => 'required'
+            'body' => 'required',
+
         ]);
 
             //Spracovanie uploadovaného suboru
@@ -155,11 +159,7 @@ class PostsController extends Controller
             //Upload obrazku
 
             $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
-
-
         }
-
-
         $post = Post::find($id);
 
         if(auth()->user()->id !== $post->user_id){
@@ -167,6 +167,7 @@ class PostsController extends Controller
         }
         $post->title =  $request->input('title');
         $post->body = $request->input('body');
+        $post->post_description = $request->input('post_description', false);
         if($request->hasFile('cover_image')){
             $post->cover_image = $fileNameToStore;
         }
