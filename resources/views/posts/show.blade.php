@@ -8,7 +8,7 @@
     {!!$post->body!!}
 </div>
 
-<small>{{$post->created_at}} by  <a href="#">{{$post->user->name}}</a> </small>
+<small>{{$post->created_at}} by  <a href="../user/{{$post->user->id}}">{{$post->user->name}} </a> </small>
 <hr>
 
 @if(Auth::user() == $post->user)

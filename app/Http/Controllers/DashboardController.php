@@ -28,4 +28,8 @@ class DashboardController extends Controller
         $user = User::find($user_id);
         return view('dashboard')->with('posts',$user->posts);
     }
+
+
+
+
 }
