@@ -15,8 +15,9 @@
                   <h5 class="card-title">{{$post->title}} </h5>
                   @if ($post->post_description)
                     <p class="card-text">{{$post->post_description}}</p>
+                    <p>autor ‣ <a href="/users/{{$post->user->id}}">{{$post->user->name}}</a></p>
                   @else
-                <p class="card-text">Napísané {{$post->created_at}} autorom ‣ {{$post->user->name}}</p>
+                <p class="card-text">Napísané {{$post->created_at}} autor ‣ <a href="/users/{{$post->user->id}}">{{$post->user->name}}</a></p>
 
                   @endif
 
