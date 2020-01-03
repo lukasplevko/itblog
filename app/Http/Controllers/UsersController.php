@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use App\User;
 use App\Post;
 
@@ -49,20 +50,22 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //$post = Post::find($id);
-       // return view('posts.show')->with('post',$post);
 
         $user = User::find($id);
         $user_posts = Post::all()->where('user_id', $id);
 
-        if(auth()->user()->id == $user->id){
-            return redirect('/dashboard');
+        if(Auth::check()){
 
-        }
-        else{
-            return view('users.show')->with('user', $user)->with('user_posts', $user_posts);
+            if(auth()->user()->id == $user->id)
+            {
+                return redirect('/dashboard');
 
-        }
+            }
+    }
+
+        return view('users.show')->with('user', $user)->with('user_posts', $user_posts);
+
+
 
 
     }
