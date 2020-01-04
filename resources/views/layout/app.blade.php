@@ -10,10 +10,10 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
     <script src="{{asset('js/ckeditor.js')}}"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
-
-
 
 
 
@@ -23,6 +23,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+
+
 
 </head>
 <body>
@@ -35,20 +38,10 @@
         </div>
 
 
-    <script>
-
-        ClassicEditor
-
-            .create( document.querySelector( '#editor' ) )
-
-            .catch( error => {
-
-                console.error( error );
-
-            } );
 
 
-</script>
+
+
 
 </body>
 

@@ -28,4 +28,20 @@
     {!! Form::submit('Submit' , ['class' => 'btn btn-primary']) !!}
 
 {!! Form::close() !!}
+
+<script>
+
+    ClassicEditor
+
+        .create( document.querySelector( '#editor' ) )
+
+        .catch( error => {
+
+            console.error( error );
+
+        } );
+
+
+</script>
+
 @endsection

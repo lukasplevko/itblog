@@ -1,7 +1,15 @@
 @extends('layout.app')
 @section('content')
 <a href="/posts" class="btn btn-secondary mb-3">Back</a>
-<h1>{{$user->name}} <a href="/posts" class="btn btn-info mb-3">Follow</a></h1>
+<h1>{{$user->name}}
+    @if (Auth::guest())
+    <a href="/login" class="btn btn-info mb-3">Follow</a>
+
+    @else
+    <a href="#" class="btn btn-info mb-3">Follow</a>
+    @endif
+
+</h1>
 <div class="d-flex flex-row flex-wrap align-content-center">
     @if (count($user_posts) > 0)
     @foreach ($user_posts as $post)

@@ -21,6 +21,8 @@ class UsersController extends Controller
         return view('users.index')->with('users', $users);
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      *

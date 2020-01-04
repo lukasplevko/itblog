@@ -15,15 +15,9 @@
                 <a class="nav-link" href="/posts">Články <span class="sr-only"></span></a>
             </li>
 
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Môj Profil</a>
-                <a class="dropdown-item" href="/posts">Moje články</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/logout">Odhlásiť sa</a>
-            </div>
-            </li>
 
-        </ul>
+
+
         @else
 
                 <li>
@@ -31,6 +25,9 @@
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/posts">Články <span class="sr-only"></span></a>
+                </li>
+                <li>
+                    <a class="nav-link active" href="/users">Používatelia <span class="sr-only"></span></a>
                 </li>
 
 
@@ -48,16 +45,18 @@
                 </div>
                 </li>
 
-            </ul>
+
+
+
         @endif
-    {!! Form::open() !!}
-    <div class="form-inline my-2 my-lg-0">
-        {{ Form::text('search', '', ['class'=>'form-control mr-sm-2', 'type' => 'search', 'placeholder' => "Vyhľadať"]) }}
-        {!! Form::submit('Hľadaj', ['class' =>'btn btn-outline-success my-2 my-sm-0' ]) !!}
-    </div>
 
-    {!! Form::close() !!}
+            </ul>
 
-    </div>
+
+
+
+
+
+
   </nav>
   <br>

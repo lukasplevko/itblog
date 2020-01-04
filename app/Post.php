@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Scout\Searchable;
+
 
 class Post extends Model
 {
+
+
     // Table name
     protected $table = 'posts';
     // Primary Key
@@ -17,5 +19,9 @@ class Post extends Model
     public function user(){
         return $this->belongsTo('App\User');
     }
+
+
+
+
 
 }
