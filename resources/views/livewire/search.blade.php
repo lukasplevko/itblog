@@ -1,6 +1,7 @@
 <div>
     {{-- Do your work, then step back. --}}
 
+
     <input type="text" class="form-control" placeholder="Vyhľadaj použivateľa" wire:model="searchTerm" />
     {{ csrf_field() }}
 

@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-<a href="/posts" class="btn btn-secondary mb-3">Back</a>
+<a href="{{ url()->previous() }}" class="btn btn-secondary mb-3">Back</a>
 <h1>{{$post->title}}</h1>
 <img style="width:100%" src="/storage/cover_images/{{$post->cover_image}}" alt="">
 <br><br>

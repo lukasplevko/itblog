@@ -1,16 +1,35 @@
 @extends('layout.app')
 @section('content')
-<a href="/posts" class="btn btn-secondary mb-3">Back</a>
-<h1>{{$user->name}}
-    @if (Auth::guest())
-    <a href="/login" class="btn btn-info mb-3">Follow</a>
+<a href="{{ url()->previous() }}" class="btn btn-secondary mb-3">Back</a>
 
-    @else
-    <a href="#" class="btn btn-info mb-3">Follow</a>
-    @endif
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img style="width:100%"  src="/storage/profile_pics/{{$user->profile_pic}}" alt="">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{$user->name}}</h5>
+        <p class="card-text">{{$user->user_descript}}</p>
+          <p class="card-text"><small class="text-muted">Naposledy aktualizované {{date('d.m.Y H:i', strtotime($user->updated_at))}}</small></p>
+          @if (Auth::guest())
+          <a href="/login" class="btn btn-info ">+</a>
 
-</h1>
+          @else
+          <a href="#" class="btn btn-info ">+</a>
+          @endif
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
 <div class="d-flex flex-row flex-wrap align-content-center">
+
+
     @if (count($user_posts) > 0)
     @foreach ($user_posts as $post)
 
@@ -37,8 +56,5 @@
 <p>No posts found...</p>
 </div>
 @endif
-
-
-
 
 @endsection

@@ -26,8 +26,9 @@ class DashboardController extends Controller
     {
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
-        return view('dashboard')->with('posts',$user->posts);
+        return view('dashboard')->with('posts',$user->posts)->with('user_descript',$user->user_descript)->with('last_update', $user->updated_at)->with('profile_pic', $user->profile_pic);
     }
+
 
 
 

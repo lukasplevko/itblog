@@ -91,6 +91,7 @@ class PostsController extends Controller
         $post->body = $request->input('body');
         $post->post_description = $request->input('post_description', false);
         $post->user_id = auth()->user()->id;
+        $post->user_name = auth()->user()->name;
         $post->cover_image = $fileNameToStore;
         $post->save();
 
@@ -162,9 +163,9 @@ class PostsController extends Controller
         }
         $post = Post::find($id);
 
-        if(auth()->user()->id !== $post->user_id){
-            return redirect('/posts')->with('error','Tento článok nie je možné odstrániť');
-        }
+
+
+
         $post->title =  $request->input('title');
         $post->body = $request->input('body');
         $post->post_description = $request->input('post_description', false);
