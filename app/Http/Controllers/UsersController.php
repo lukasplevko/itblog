@@ -99,12 +99,6 @@ class UsersController extends Controller
             }
 
 
-
-
-
-
-
-
             //Aktualizácia mena a popisu uživateľa
             $user = User::find($id);
             $owned_posts = Post::where('user_id', '=', $id)->get();
