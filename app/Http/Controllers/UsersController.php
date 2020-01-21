@@ -34,14 +34,13 @@ class UsersController extends Controller
         $user = User::find($id);
         $user_posts = Post::all()->where('user_id', $id);
 
-        if(Auth::check()){
 
             if(auth()->user()->id == $user->id)
             {
                 return redirect('/dashboard');
 
             }
-    }
+
         return view('users.show')->with('user', $user)->with('user_posts', $user_posts);
     }
 
@@ -53,13 +52,16 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        if(auth()->user()->id !== $user->id)
-        {
-            return back();
 
-        }
-        return view('users.update')->with('user', $user);
+            $user = User::findOrFail($id);
+
+            if(auth()->user()->id !== $user->id)
+            {
+                return back()->with('error', "Nemôžeš upraviť cudzí profil");
+
+            }
+            return view('users.update')->with('user', $user);
+
 
     }
 

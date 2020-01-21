@@ -11225,6 +11225,11 @@ a.text-danger:focus {
   color: #ae1c17 !important;
 }
 
+figure .image{
+    width: 100%;
+    text-align:center;
+}
+
 .text-light {
   color: #f8f9fa !important;
 }
@@ -11385,5 +11390,3 @@ a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
-
-

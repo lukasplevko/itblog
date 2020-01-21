@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-<a href="{{ url()->previous() }}" class="btn btn-secondary mb-3">Back</a>
+<a href="/users" class="btn btn-secondary mb-3">Back</a>
 
 <div class="card mb-3" style="max-width: 540px;">
     <div class="row no-gutters">
