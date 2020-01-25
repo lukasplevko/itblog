@@ -1,0 +1,80 @@
+html{
+    scroll-behavior: smooth;
+}
+
+
+.page-wlcm{
+    background: #19E56B;
+}
+
+.welcome{
+
+    position: relative;;
+    top: 100px;
+
+}
+
+.intro{
+
+    height: 100vh;
+}
+.welcome svg{
+    width: 100%;
+}
+
+.elipse{
+    position: absolute;
+    top: -10%;
+    right: 60%;
+}
+
+.welcome a{
+   text-decoration: none;
+   color: #000;
+}
+
+.lead{
+    opacity: 0;
+    animation: fadeIn 2s forwards 1s;
+}
+
+.nav{
+    opacity: 0;
+    animation: fadeIn 2s forwards 1s;
+}
+
+.nav a:hover{
+    background: #19E56B;
+    transition: ease-in .2s;
+}
+
+.articles{
+
+    height: 100vh;
+    background: #6EB5FF;
+
+}
+
+#logo path:nth-child(1){stroke-dasharray:658; stroke-dashoffset: 658; animation: line-anim 2s ease forwards;}
+#logo path:nth-child(2){stroke-dasharray:903; stroke-dashoffset: 903;animation: line-anim 2s ease forwards;}
+#logo path:nth-child(3){stroke-dasharray:465; stroke-dashoffset: 465;animation: line-anim 2s ease forwards;}
+#logo path:nth-child(4){stroke-dasharray:903; stroke-dashoffset: 903;animation: line-anim 2s ease forwards;}
+#logo path:nth-child(5){stroke-dasharray:1002; stroke-dashoffset: 1002;animation: line-anim 2s ease forwards;}
+#logo path:nth-child(6){stroke-dasharray:484; stroke-dashoffset: 484;animation: line-anim 2s ease forwards;}
+#logo path:nth-child(7){stroke-dasharray:796; stroke-dashoffset: 796;animation: line-anim 2s ease forwards;}
+#logo path:nth-child(8){stroke-dasharray:1138; stroke-dashoffset: 1138;animation: line-anim 2s ease forwards;}
+
+@keyframes line-anim{
+    to{
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes fadeIn{
+    to{
+        opacity: 1;
+    }
+}
+
+
+

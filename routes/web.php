@@ -14,7 +14,7 @@
 
 
 
-Route::get('/', 'DashboardController@index');
+
 Route::resource('posts', 'PostsController');
 Route::resource('users', 'UsersController');
 
@@ -24,7 +24,7 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 
 
-
+Route::view('/', 'welcome');
 
 
 

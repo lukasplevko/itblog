@@ -34,14 +34,19 @@ class UsersController extends Controller
         $user = User::find($id);
         $user_posts = Post::all()->where('user_id', $id);
 
-
-            if(auth()->user()->id == $user->id)
+            if(Auth::guest()){
+                return view('users.show')->with('user', $user)->with('user_posts', $user_posts);
+            }
+            elseif(Auth::user()){
+                if(auth()->user()->id == $user->id)
             {
                 return redirect('/dashboard');
 
+            }else{
+                return view('users.show')->with('user', $user)->with('user_posts', $user_posts);
+            }
             }
 
-        return view('users.show')->with('user', $user)->with('user_posts', $user_posts);
     }
 
     /**
