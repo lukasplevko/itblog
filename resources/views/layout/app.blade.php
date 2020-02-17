@@ -21,8 +21,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset ('css/style.css')}}">
+    <link href="{{ secure_asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ secure_asset ('css/style.css')}}">
 
 
 
