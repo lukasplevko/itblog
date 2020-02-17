@@ -13,8 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard(); // Disable mass assignment
 
-        $this->call(UsersTableSeeder::class);
-        $this->call(PostsTableSeeder::class);
+
 
         Model::reguard(); // Enable mass assignment
     }

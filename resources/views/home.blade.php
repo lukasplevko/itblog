@@ -56,6 +56,9 @@
             </div>
             <hr>
 
+            @if (!empty($article))
+
+
             <section class="articles">
 
 
@@ -167,6 +170,6 @@
         </section>
 
 
-
+        @endif
 
 @endsection
