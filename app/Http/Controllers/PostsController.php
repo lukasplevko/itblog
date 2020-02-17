@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 use App\Post;
+use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
 {
@@ -34,8 +37,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->get();
-        return view('posts.index')->with('posts', $posts);
+        return view('posts.index');
     }
 
     /**
@@ -59,8 +61,9 @@ class PostsController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
+            'category'=> 'required',
+            'theme' => 'required',
             'cover_image' => 'image|nullable|max:1999',
-            'post_description' => 'nullable'
 
         ]);
 
@@ -80,19 +83,43 @@ class PostsController extends Controller
             //Upload obrazku
 
             $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+            $image = Image::make(public_path('storage/cover_images/'.$fileNameToStore))->crop(800,533);
+            $image->save();
 
         }else{
-            $fileNameToStore = 'noimage.jpg';
+            if($request->input('theme')== 'laravel'){
+                $fileNameToStore = 'laravel.png';
+            }
+            else if($request->input('theme')== 'css'){
+                $fileNameToStore = 'css.png';
+            }
+            else if($request->input('theme')== 'js'){
+                $fileNameToStore = 'js.png';
+            }
+            // else if($request->input('theme')== 'html'){
+            //     $fileNameToStore = 'html.png';
+            // }
+            else if($request->input('theme')== 'undefined'){
+                $fileNameToStore = 'code.png';
+            }
+
+
         }
+
+
+
+
 
         //create post
         $post = new Post;
         $post->title =  $request->input('title');
         $post->body = $request->input('body');
-        $post->post_description = $request->input('post_description', false);
         $post->user_id = auth()->user()->id;
         $post->user_name = auth()->user()->name;
         $post->cover_image = $fileNameToStore;
+        $post->theme = $request->input('theme');
+        $post->category = $request->input('category');
+        $post->slug = Str::slug($post->title, '-').time();;
         $post->save();
 
 
@@ -105,9 +132,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $post = Post::find($id);
+        $post = Post::where('slug', $slug)->first();
         return view('posts.show')->with('post',$post);
     }
 
@@ -141,6 +168,8 @@ class PostsController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
+            'category' => 'required',
+            'theme' => 'required'
 
         ]);
 
@@ -161,17 +190,39 @@ class PostsController extends Controller
 
             $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
         }
+        else{
+            if($request->input('theme')== 'laravel'){
+                $fileNameToStore = 'laravel.png';
+            }
+            else if($request->input('theme')== 'css'){
+                $fileNameToStore = 'css.png';
+            }
+            else if($request->input('theme')== 'js'){
+                $fileNameToStore = 'js.png';
+            }
+            // else if($request->input('theme')== 'html'){
+            //     $fileNameToStore = 'html.png';
+            // }
+            else if($request->input('theme')== 'undefined'){
+                $fileNameToStore = 'code.png';
+            }
+
+
+        }
+
+        $imageLarge = Image::make(public_path('storage/cover_images/'.$fileNameToStore))->crop(800,533);
+        $imageLarge->save();
         $post = Post::find($id);
-
-
-
-
         $post->title =  $request->input('title');
         $post->body = $request->input('body');
-        $post->post_description = $request->input('post_description', false);
+        $post->theme = $request->input('theme');
+        $post->category = $request->input('category');
+        $post->slug = Str::slug($post->title, '-').time();
         if($request->hasFile('cover_image')){
             $post->cover_image = $fileNameToStore;
         }
+
+
         $post->save();
 
         return redirect('/posts')->with('success', 'Post Updated');
@@ -193,7 +244,7 @@ class PostsController extends Controller
             return redirect('/posts')->with('error','Tento článok nie je možné odstrániť');
         }
 
-        if($post->cover_image != 'noimage.jpg'){
+        if($post->cover_image != 'code.png' || $post->cover_image != 'laravel.png' || $post->cover_image != 'html.png' || $post->cover_image != 'js.png' || $post->cover_image != 'css.png' ){
             //Vymaž obrázok
             Storage::delete('public/cover_images/'.$post->cover_image);
         }

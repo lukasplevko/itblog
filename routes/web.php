@@ -15,8 +15,13 @@
 
 
 
+
 Route::resource('posts', 'PostsController');
+Route::get('/posts/{slug}', 'PostsController@show')->name('posts.slug');
+Route::get('/posts/category/{category}', 'PagesController@category');
 Route::resource('users', 'UsersController');
+Route::get('/users/{name}', 'UsersController@show')->name('name.search');
+
 
 
 
@@ -24,7 +29,8 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 
 
-Route::view('/', 'welcome');
+Route::get('/', 'PagesController@index');
+Route::get('/home','HomeController@index');
 
 
 

@@ -22,7 +22,7 @@
                     <th scope="row"><img class="img-thumbnail" src="storage/profile_pics/{{$user->profile_pic}}" alt="" style="width:140px"></th>
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
-                <td><a class="btn btn-info" href="users/{{$user->id}}">Profil</a></td>
+                <td><a class="btn btn-info" href="users/{{$user->name}}">Profil</a></td>
                 </tr>
                 </tbody>
             @endforeach

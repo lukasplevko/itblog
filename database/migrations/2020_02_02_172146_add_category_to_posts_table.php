@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPostDescriptionToPostsTable extends Migration
+class AddCategoryToPostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddPostDescriptionToPostsTable extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->string('post_description', 150)->nullable();
+            $table->string('category');
         });
     }
 
@@ -26,7 +26,7 @@ class AddPostDescriptionToPostsTable extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->dropColumn('post_description');
+            $table->dropColumn('category');
         });
     }
 }

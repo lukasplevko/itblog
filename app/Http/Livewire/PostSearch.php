@@ -14,8 +14,9 @@ class PostSearch extends Component
     {
         $searchTerm = '%'. $this->searchTerm.'%';
         $posts = Post::where('title', 'LIKE', $searchTerm)
-        ->orWhere('user_name', 'LIKE', $searchTerm)
-        ->get();
+        ->orWhere('user_name', 'LIKE', $searchTerm)->orderBy('created_at', 'desc')
+        ->paginate(10);
+
 
         return view('livewire.post-search')->with('posts', $posts);
     }

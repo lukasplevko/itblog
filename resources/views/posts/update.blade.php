@@ -20,6 +20,12 @@
     </div>
 
 
+    {{Form::label('category', 'Kategória')}}
+    {{Form::select('category', array('Article' => "Článok", 'Tutorial' => 'Návod'), $post->category ,['class'=>'custom-select my-1 mr-sm-2'])}}
+    {{Form::label('theme', 'Téma')}}
+    {{Form::select('theme', array('laravel' => "Laravel", 'css' => 'CSS', 'js'=>'Javascript', 'undefined'=>'Všeobecné'), $post->theme ,['class'=>'custom-select my-1 mr-sm-2'])}}
+
+
     <div class="form-group">
         {{Form::file('cover_image')}}
     </div>

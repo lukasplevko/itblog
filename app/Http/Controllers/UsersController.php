@@ -28,11 +28,13 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($name)
     {
 
-        $user = User::find($id);
-        $user_posts = Post::all()->where('user_id', $id);
+        $user = User::where('name', $name)->first();
+
+
+        $user_posts = Post::all()->where('user_name', $name);
 
             if(Auth::guest()){
                 return view('users.show')->with('user', $user)->with('user_posts', $user_posts);

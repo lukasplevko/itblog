@@ -22,4 +22,11 @@
 </div>
 @endif
 
+<div class="mt-4">
+    <h3 class="display-3">Komentáre</h3>
+    <hr>
+    @comments(['model' => $post])
+</div>
+
+
 @endsection

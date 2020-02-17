@@ -13,16 +13,20 @@
         {!! Form::textarea('body','', ['id'=> 'editor','class' => 'form-control', 'placeholder' => 'Povinné']) !!}
 
     </div>
-    <div class="form-group">
-        {{Form::label('text', 'Popis')}}
-        {!! Form::text('post_description','', ['class' => 'form-control', 'placeholder' => 'Nepovinné', 'maxlength' => 150]) !!}
 
-    </div>
+
+
+    {{Form::label('category', 'Kategória')}}
+    {{Form::select('category', array('Article' => "Článok", 'Tutorial' => 'Návod'), 'nothin' ,['class'=>'custom-select my-1 mr-sm-2'])}}
+    {{Form::label('theme', 'Téma')}}
+    {{Form::select('theme', array('laravel' => "Laravel", 'css' => 'CSS', 'js'=>'Javascript', 'undefined'=>'Všeobecné'), 'nothin' ,['class'=>'custom-select my-1 mr-sm-2'])}}
 
 
     <div class="form-group">
         {{Form::file('cover_image')}}
     </div>
+
+
 
 
     {!! Form::submit('Submit' , ['class' => 'btn btn-primary']) !!}
