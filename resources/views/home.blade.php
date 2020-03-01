@@ -24,17 +24,19 @@
               <div class="col-sm latest">
                   <h3 class="display-4">Najnovší</h3>
                 @isset($latest)
-
-                <div class="card mb-3 mt-2">
-                <img class="card-img-top" src="/storage/cover_images/{{$latest->cover_image}}" alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="card-title">{{$latest->title}}</h5>
-                      <p class="card-text">{{$latest->post_descript}}</p>
-                      <p class="card-text"><small class="text-muted">Napísané: {{$latest->created_at}}</small></p>
+                <a href="/posts/{{$latest->slug}}">
+                    <div class="card mb-3 mt-2">
+                    <img class="card-img-top" src="/storage/cover_images/{{$latest->cover_image}}" alt="Card image cap">
+                </a>
+                        <div class="card-body">
+                        <h5 class="card-title">{{$latest->title}}</h5>
+                        <p class="card-text">{{$latest->post_descript}}</p>
+                        <p class="card-text"><small class="text-muted">Napísané: {{$latest->created_at}}</small></p>
+                        </div>
                     </div>
-                  </div>
+
                   @else
-                  <h1 class="display-4">Haló.... nope, tu sme skončili:(</h1>
+                  <p>Nič sme nenašli</p>
                   @endisset
 
 
@@ -56,120 +58,114 @@
             </div>
             <hr>
 
-            @if (!empty($article))
-
-
-            <section class="articles">
 
 
 
-                <h3 class="display-4 ml-3 ">Všeobecné články <a href="/posts/category/article" class="btn btn-sm btn-success">Čítať viac</a></h3>
-
-                <div class="d-flex flex-row">
-                    <div class=" p-2 col-8">
-                        <div class="preview">
-                            <a href="">
-                            <img class="d-block w-100 " src="/storage/cover_images/{{$article->cover_image}}">
-                            </a>
-
+            <section class="row ml-1 container">
+            <div class="shadow-pop-br">
+                <a href="/posts/category/css" class="post-redirect ">
+                    <div class="card ml-2 mb-2 article" style="width: 15rem;">
+                        <img style=" width: 100%;" src="/storage/cover_images/css.png" class="card-img-top" alt="Obrázok článku">
+                    </a>
+                        <div class="card-body">
+                            <h5 class="card-title">CSS </h5>
+                                <p class="card-text">Tipy a triky v CSS</p>
                         </div>
+
                     </div>
-                    <div class="flex-column">
-                        <div class="preview p-2">
-                        <img class=" w-100 " src="/storage/cover_images/{{$article->cover_image}}">
+            </div>
 
+            <div class="shadow-pop-br">
+                <a href="/posts/category/laravel" class="post-redirect ">
+                    <div class="card ml-2 mb-2 article" style="width: 15rem;">
+                        <img style=" width: 100%;" src="/storage/cover_images/laravel.png" class="card-img-top" alt="Obrázok článku">
+                    </a>
+                        <div class="card-body">
+                            <h5 class="card-title">Laravel </h5>
+                                <p class="card-text">Všetko o Laraveli</p>
                         </div>
 
-                        <div class="preview p-2">
-                            <img class=" w-100 " src="/storage/cover_images/{{$article->cover_image}}">
-
-                        </div>
                     </div>
+            </div>
 
-                </div>
-
-                <hr class="mb-5">
-                <h3 class="display-4 ml-3 ">#Návody Laravel <a href="/posts/category/laravel" class="btn btn-sm btn-success">Čítať viac</a></h3>
-
-                <div class="d-flex flex-row">
-                    <div class=" p-2 col-8">
-                        <div class="preview">
-                            <a href="">
-                            <img class="d-block w-100 " src="/storage/cover_images/{{$article->cover_image}}">
-                            </a>
-
+            <div class="shadow-pop-br">
+                <a href="/posts/category/javascript" class="post-redirect ">
+                    <div class="card ml-2 mb-2 article" style="width: 15rem;">
+                        <img style=" width: 100%;" src="/storage/cover_images/js.png" class="card-img-top" alt="Obrázok článku">
+                    </a>
+                        <div class="card-body">
+                            <h5 class="card-title">Javascript </h5>
+                                <p class="card-text">Javascript basics</p>
                         </div>
+
                     </div>
-                    <div class="flex-column">
-                        <div class="preview p-2">
-                        <img class=" w-100 " src="/storage/cover_images/{{$article->cover_image}}">
+            </div>
 
+            <div class="shadow-pop-br">
+                <a href="/posts/category/code_blog" class="post-redirect ">
+                    <div class="card ml-2 mb-2 article" style="width: 15rem;">
+                        <img style=" width: 100%;" src="/storage/cover_images/code.png" class="card-img-top" alt="Obrázok článku">
+                    </a>
+                        <div class="card-body">
+                            <h5 class="card-title">Code_blog; </h5>
+                                <p class="card-text">Novinky v tech</p>
                         </div>
 
-                        <div class="preview p-2">
-                            <img class=" w-100 " src="/storage/cover_images/{{$article->cover_image}}">
-
-                        </div>
                     </div>
+            </div>
+            </section>
+            <hr>
+            <div class="section-heading mb-5 mt-5">
+                <h2 class="display-2  ">Články</h2>
+            </div>
+            <section class="articles mt-5 row">
 
-                </div>
+                <div class="col-8">
+                @if (!empty($posts))
+                @foreach ($posts as $post)
+                <div class="card mb-3 slide" style="max-width: 540px;">
+                    <div class="row no-gutters">
+                      <div class="col-md-4">
+                      <img src="/storage/cover_images/{{$post->cover_image}}" class="card-img" alt="...">
+                      </div>
+                      <div class="col-md-4">
+                        <div class="card-body">
+                        <h5 class="card-title">{{$post->title}}</h5>
+                        @if ($post->post_descript)
+                        <p class="card-text">{{$post->post_descript}}</p>
+                        @endif
 
-                <hr class="mb-5">
-                <h3 class="display-4 ml-3 ">#Návody Javascript <a href="/posts/category/js" class="btn btn-sm btn-success">Čítať viac</a></h3>
-
-                <div class="d-flex flex-row">
-                    <div class=" p-2 col-8">
-                        <div class="preview">
-                            <a href="">
-                            <img class="d-block w-100 " src="/storage/cover_images/{{$article->cover_image}}">
-                            </a>
-
+                        <p class="card-text"><small class="text-muted">{{$post->created_at}}</small></p>
                         </div>
+                      </div>
                     </div>
-                    <div class="flex-column">
-                        <div class="preview p-2">
-                        <img class=" w-100 " src="/storage/cover_images/{{$article->cover_image}}">
+                  </div>
+                @endforeach
+                @else
+                <h3 class="display-3">Doteraz nikto nepublikoval žiaden článok</h3>
+                @endif
+            </div>
+            <div class="col-4 ">
+                <h3>Aktuálne rozoberáme</h3>
+                @if (!empty($bests))
+                @foreach ($bests as $item)
+                <div class="card bg-dark text-white mb-5  shadow-pop-br">
+                <img class="card-img" src="/storage/cover_images/{{$item->cover_image}}" alt="Card image">
+                    <div class="card-img-overlay bg-title">
+                      <h5 class="card-title ">{{$item->title}}</h5>
 
-                        </div>
 
-                        <div class="preview p-2">
-                            <img class=" w-100 " src="/storage/cover_images/{{$article->cover_image}}">
-
-                        </div>
                     </div>
+                  </div>
 
-                </div>
+                @endforeach
+                @endif
 
-                <hr class="mb-5">
-                <h3 class="display-4 ml-3 ">#Návody CSS <a href="/posts/category/css" class="btn btn-sm btn-success">Čítať viac</a></h3>
+            </div>
 
-                <div class="d-flex flex-row">
-                    <div class=" p-2 col-8">
-                        <div class="preview">
-                            <a href="">
-                            <img class="d-block w-100 " src="/storage/cover_images/{{$article->cover_image}}">
-                            </a>
-
-                        </div>
-                    </div>
-                    <div class="flex-column">
-                        <div class="preview p-2">
-                        <img class=" w-100 " src="/storage/cover_images/{{$article->cover_image}}">
-
-                        </div>
-
-                        <div class="preview p-2">
-                            <img class=" w-100 " src="/storage/cover_images/{{$article->cover_image}}">
-
-                        </div>
-                    </div>
-
-                </div>
+            </section>
 
 
-        </section>
 
-
-        @endif
 
 @endsection

@@ -11,10 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard(); // Disable mass assignment
-
-
-
-        Model::reguard(); // Enable mass assignment
+        factory(App\Post::class, 50)->create();
     }
 }

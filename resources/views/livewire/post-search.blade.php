@@ -24,11 +24,11 @@
                             <p class="card-text">Napísané {{$post->created_at}} autor ‣ <a href="/users/{{$post->user->name}}">{{$post->user_name}}</a></p>
                             <a href="/posts/{{$post->slug}}" class="btn btn-info">Prečítať</a>
 
-                    @endif
-
-
+                        @endif
                     </div>
+
                 </div>
+
 
             @endforeach
 

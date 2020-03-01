@@ -35,6 +35,7 @@ Route::get('/home','HomeController@index');
 
 
 
+
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->name('home');

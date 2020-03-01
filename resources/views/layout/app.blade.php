@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="{{secure_asset('img/tabfav.ico')}}"/>
+    <link rel="shortcut icon" href="{{asset('img/tabfav.ico')}}"/>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -11,8 +11,8 @@
 
 
 
-    <script src="{{secure_asset('js/ckeditor.js')}}"></script>
-    <script src="{{ secure_asset('js/app.js') }}" defer></script>
+    <script src="{{asset('js/ckeditor.js')}}"></script>
+    <script src="{{asset('js/app.js') }}" defer></script>
 
 
 
@@ -21,8 +21,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ secure_asset('css/bootstrap.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ secure_asset ('css/style.css')}}">
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset ('css/style.css')}}">
 
 
 
@@ -46,10 +46,6 @@
 </body>
 
 
-<footer style="height: 30vh;" class=" bg-success">
 
-
-</footer>
-
-<script src="{{ secure_asset('js/main.js') }}" defer></script>
+<script src="{{ asset('js/main.js') }}" defer></script>
 </html>

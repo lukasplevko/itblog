@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 use App\Post;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\Console\Input\Input;
 
 class PostsController extends Controller
 {
@@ -119,11 +120,11 @@ class PostsController extends Controller
         $post->cover_image = $fileNameToStore;
         $post->theme = $request->input('theme');
         $post->category = $request->input('category');
-        $post->slug = Str::slug($post->title, '-').time();;
+        $post->slug = Str::slug($post->title, '-').time();
         $post->save();
 
 
-        return redirect('/posts')->with('success', 'Post Created');
+        return redirect('/posts')->with('success', 'Článok vytvorený');
     }
 
     /**
@@ -236,20 +237,16 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-
-
-        $post = Post::find($id);
-
+        $post = Post::find($id)->first();
         if(auth()->user()->id !== $post->user_id){
             return redirect('/posts')->with('error','Tento článok nie je možné odstrániť');
         }
 
-        if($post->cover_image != 'code.png' || $post->cover_image != 'laravel.png' || $post->cover_image != 'html.png' || $post->cover_image != 'js.png' || $post->cover_image != 'css.png' ){
+        if($post->cover_image != 'laravel.png' && $post->cover_image != 'code.png' && $post->cover_image != 'js.png' && $post->cover_image != 'css.png'){
             //Vymaž obrázok
             Storage::delete('public/cover_images/'.$post->cover_image);
         }
-
         $post->delete();
-        return redirect('/posts')->with('success', 'Post Removed');
+        return redirect('/posts')->with('success', 'Článok odstránený');
     }
 }

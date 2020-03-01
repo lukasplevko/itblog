@@ -1,10 +1,11 @@
 @extends('layout.app')
 @section('content')
-<h1>Create post</h1>
+<h1>Vytvor článok</h1>
 {!! Form::open(['action'=> 'PostsController@store', 'method' => 'POST' ,'enctype' => 'multipart/form-data']) !!}
     <div class="form-group">
         {{Form::label('title', 'Titulok')}}
-        {!! Form::text('title','', ['class' => 'form-control', 'placeholder' => 'Povinné', 'maxlength' => 50]) !!}
+        {!! Form::text('title','', ['id'=>"title_area",'class' => 'form-control', 'placeholder' => 'Povinné', 'maxlength' => 100]) !!}
+        <div id="title_area_remaining_chars"></div>
 
     </div>
 
@@ -39,6 +40,7 @@
     ClassicEditor
 
         .create( document.querySelector( '#editor' ) )
+
 
         .catch( error => {
 

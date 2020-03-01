@@ -1,20 +1,14 @@
-// const logo = document.querySelectorAll('#logo path');
-// for(let i = 0; i<logo.length; i++){
-//     console.log(`Pismeno ${i} dlzka ${logo[i].getTotalLength()}`);
-// }
+const titleArea = document.getElementById('title_area');
+const remaining_charsText = document.getElementById('title_area_remaining_chars');
+const MAX_CHARS_TITLE = 100;
 
-let latest = document.querySelector('.latest');
-let topContent = document.querySelector('.top-content');
-let body = document.getElementsByTagName("body");
-body.addEventListener('resize', function(){
-    if(window.matchMedia('(max-width: 770px)')){
-        latest.classList.toggle('col-5');
-        topContent.classList.toggle('row');
-    }else{
-        console.log("hovienko");
-    }
 
-})
+titleArea.addEventListener('input', ()=>{
+    const remaining = MAX_CHARS_TITLE - titleArea.value.length;
+    const color = remaining < MAX_CHARS_TITLE * 0.1 ? 'red' : null;
+    remaining_charsText.textContent = `Ostáva ${remaining} znakov`;
+    remaining_charsText.style.color = color;
+});
 
 
 
