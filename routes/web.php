@@ -1,5 +1,5 @@
 <?php
-
+use App\Mail\WelcomeMail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,12 +33,14 @@ Route::get('/', 'PagesController@index');
 Route::get('/home','HomeController@index');
 
 
+Route::get('/email', function () {
+ return new WelcomeMail();
+});
 
 
+Auth::routes(['verify' => true]);
 
-Auth::routes();
-
-Route::get('/dashboard', 'DashboardController@index')->name('home');
+Route::get('/dashboard', 'DashboardController@index')->name('home')->middleware('verified');
 
 
 Route::get('/users', 'UsersController@index');

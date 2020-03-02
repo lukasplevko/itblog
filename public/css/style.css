@@ -131,20 +131,24 @@ figure.image-style-side{
 }
 
 .text-box{
-
     position: relative;
     z-index: 2;
     top: -30px;
     padding:1rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
 
+}
+.article{
+    max-width: 1000px;
+    margin: 0 auto;
+}
 .text-cover-img{
     position:relative;
     z-index: 1;
     overflow:hidden;
     width:100%
 }
+.card-img{height:100%;}
 
 #logo path:nth-child(1){stroke-dasharray:508; stroke-dashoffset: 508; animation: line-anim 2s ease forwards;}
 #logo path:nth-child(2){stroke-dasharray:433; stroke-dashoffset: 433;animation: line-anim 2s ease forwards;}
@@ -299,4 +303,19 @@ figure img{
   }
 
 
+  .bg-title p{
+    padding: .5em;
+    width: 100%;
+    background: #000;
+    transition: padding;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+}
 
+.bg-title p:hover{
+    padding: 1em;
+}
+
+a.latest{
+    color: #000;
+}

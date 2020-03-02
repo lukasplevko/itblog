@@ -12,7 +12,7 @@
             @foreach ($posts as $post)
 
             <a href="/posts/{{$post->slug}}" class="post-redirect">
-                <div class="card ml-2 mb-2 article" style="width: 15rem;">
+                <div class="card ml-2 mb-2" style="width: 15rem;">
                     <img style=" width: 100%;" src="/storage/cover_images/{{$post->cover_image}}" class="card-img-top" alt="Obrázok článku">
                 </a>
                     <div class="card-body">

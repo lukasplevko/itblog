@@ -3,7 +3,7 @@
 <a href="{{url()->previous()}}" class="btn btn-secondary mb-3">Back</a>
 
 
-    <div class="col-6">
+    <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
                 <div class="row">

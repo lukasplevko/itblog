@@ -12,7 +12,7 @@ class PagesController extends Controller
         }
 
         public function category($category){
-            $posts = Post::where('theme', 'laravel')->get();
+            $posts = Post::where('theme', $category)->paginate(10);
             return view('posts.category',compact('category','posts'));
         }
 

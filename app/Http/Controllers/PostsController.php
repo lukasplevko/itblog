@@ -84,7 +84,7 @@ class PostsController extends Controller
             //Upload obrazku
 
             $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
-            $image = Image::make(public_path('storage/cover_images/'.$fileNameToStore))->crop(800,533);
+            $image = Image::make(public_path('storage/cover_images/'.$fileNameToStore))->fit(800,533);
             $image->save();
 
         }else{
@@ -211,8 +211,9 @@ class PostsController extends Controller
 
         }
 
-        $imageLarge = Image::make(public_path('storage/cover_images/'.$fileNameToStore))->crop(800,533);
+        $imageLarge = Image::make(public_path('storage/cover_images/'.$fileNameToStore))->fit(800,533);
         $imageLarge->save();
+
         $post = Post::find($id);
         $post->title =  $request->input('title');
         $post->body = $request->input('body');

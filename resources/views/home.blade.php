@@ -24,17 +24,17 @@
               <div class="col-sm latest">
                   <h3 class="display-4">Najnovší</h3>
                 @isset($latest)
-                <a href="/posts/{{$latest->slug}}">
+                <a class="latest" href="/posts/{{$latest->slug}}">
                     <div class="card mb-3 mt-2">
                     <img class="card-img-top" src="/storage/cover_images/{{$latest->cover_image}}" alt="Card image cap">
-                </a>
+
                         <div class="card-body">
                         <h5 class="card-title">{{$latest->title}}</h5>
-                        <p class="card-text">{{$latest->post_descript}}</p>
-                        <p class="card-text"><small class="text-muted">Napísané: {{$latest->created_at}}</small></p>
+                        <p class="card-text text-dark">{{$latest->post_descript}}</p>
+                        <p class="card-text text-dark"><small class="text-muted">Napísané: {{$latest->created_at}}</small></p>
                         </div>
                     </div>
-
+                </a>
                   @else
                   <p>Nič sme nenašli</p>
                   @endisset
@@ -61,7 +61,7 @@
 
 
 
-            <section class="row ml-1 container">
+            <section class="row container">
             <div class="shadow-pop-br">
                 <a href="/posts/category/css" class="post-redirect ">
                     <div class="card ml-2 mb-2 article" style="width: 15rem;">
@@ -116,20 +116,21 @@
             </section>
             <hr>
             <div class="section-heading mb-5 mt-5">
-                <h2 class="display-2  ">Články</h2>
+                <h2 class="display-2 ">Články</h2>
             </div>
             <section class="articles mt-5 row">
 
-                <div class="col-8">
+                <div class="col-lg-8">
                 @if (!empty($posts))
                 @foreach ($posts as $post)
+                <a href="/posts/{{$post->slug}}">
                 <div class="card mb-3 slide" style="max-width: 540px;">
                     <div class="row no-gutters">
                       <div class="col-md-4">
-                      <img src="/storage/cover_images/{{$post->cover_image}}" class="card-img" alt="...">
+                      <img src="storage/cover_images/{{$post->cover_image}}" class="card-img" alt="...">
                       </div>
-                      <div class="col-md-4">
-                        <div class="card-body">
+                      <div class="col-md-8">
+                        <div class="card-body text-dark">
                         <h5 class="card-title">{{$post->title}}</h5>
                         @if ($post->post_descript)
                         <p class="card-text">{{$post->post_descript}}</p>
@@ -140,24 +141,24 @@
                       </div>
                     </div>
                   </div>
+                  </a>
                 @endforeach
                 @else
-                <h3 class="display-3">Doteraz nikto nepublikoval žiaden článok</h3>
+                <h3>Doteraz nikto nepublikoval žiaden článok</h3>
                 @endif
             </div>
-            <div class="col-4 ">
-                <h3>Aktuálne rozoberáme</h3>
+            <div class="col-lg-4 ">
+                <h5>Aktuálne rozoberáme</h5>
                 @if (!empty($bests))
                 @foreach ($bests as $item)
-                <div class="card bg-dark text-white mb-5  shadow-pop-br">
+            <a href="/posts/{{$item->slug}}">
+                <div class="card bg-dark text-white mb-5">
                 <img class="card-img" src="/storage/cover_images/{{$item->cover_image}}" alt="Card image">
                     <div class="card-img-overlay bg-title">
-                      <h5 class="card-title ">{{$item->title}}</h5>
-
-
+                      <p class="card-title ">{{$item->title}}</p>
                     </div>
                   </div>
-
+                </a>
                 @endforeach
                 @endif
 

@@ -7,6 +7,7 @@ use Auth;
 use DB;
 use App\User;
 use App\Post;
+use Intervention\Image\Facades\Image;
 
 class UsersController extends Controller
 {
@@ -102,6 +103,8 @@ class UsersController extends Controller
                 //Upload obrazku
 
                 $path = $request->file('profile_pic')->storeAs('public/profile_pics', $fileNameToStore);
+                $image = Image::make(public_path('storage/profile_pics/'.$fileNameToStore))->fit(150,150);
+                $image->save();
 
             }else{
                 $fileNameToStore = 'noprofile.jpg';
