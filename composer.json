@@ -9,7 +9,6 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
-        "ckeditor/ckeditor": "4.*",
         "fideloper/proxy": "^4.0",
         "intervention/image": "^2.5",
         "laravel/framework": "^6.2",
@@ -17,7 +16,8 @@
         "laravel/ui": "^1.1",
         "laravelcollective/html": "^6.0",
         "laravelista/comments": "^3.3",
-        "livewire/livewire": "^0.5.3"
+        "livewire/livewire": "^0.5.3",
+        "spatie/laravel-cookie-consent": "^2.12"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

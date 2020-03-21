@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-<a href="{{url()->previous()}}" class="btn btn-secondary mb-3">Back</a>
+<a href="{{ url()->previous() }}" class="previous"><i class="fas fa-arrow-circle-left"></i>Predošlé</a>
 
 
     <div class="col-lg-6">
@@ -22,19 +22,7 @@
                     </div>
                     <div class="col-12 col-lg-4 col-md-6 text-center">
                     <img src="/storage/profile_pics/{{$user->profile_pic}}" alt="" class="mx-auto rounded-circle img-fluid">
-                        <br>
-                        <ul class="list-inline ratings text-center" title="Ratings">
-                            <li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
-                            </li>
-                            <li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
-                            </li>
-                            <li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
-                            </li>
-                            <li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
-                            </li>
-                            <li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
-                            </li>
-                        </ul>
+
                     </div>
                     <div class="col-12 col-lg-4">
                     <p>Počet článkov: {{count($user_posts)}}</p>

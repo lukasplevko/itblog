@@ -3,44 +3,36 @@
 
 
     <div class="row justify-content-center">
-        <div>
+        <div class="col-md-9">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-12 col-lg-8 col-md-6">
+                        <div class="col-md-8">
                             <h3 class="mb-0 text-truncated">{{auth()->user()->name}}</h3>
-
                             <p>
-                               {{$user_descript}}
+                               {{$user->user_descript}}
                             </p>
-                            <p>
-                                <p class="card-text"><small class="text-muted">Naposledy aktualizované {{date('d.m.Y.H:i', strtotime($last_update))}}</small></p>
+                             <p class="card-text">
+                                 <small class="text-muted">Naposledy aktualizované {{date('d.m.Y.H:i', strtotime($user->updated_at))}}</small>
+                            </p>
+                            @if ($user->role == 'admin')
+                            <span class="badge badge-info tags">Administrátor</span>
+                            @else
+                            <span class="badge badge-info tags">Používateľ</span>
+                            @endif
 
-                            </p>
-                            <p> <span class="badge badge-info tags">Autor</span>
-                            </p>
+
                         </div>
-                        <div class="col-12 col-lg-4 col-md-6 text-center">
-                        <img src="/storage/profile_pics/{{$profile_pic}}" alt="" class="mx-auto rounded-circle img-fluid">
-                            <br>
-                            <ul class="list-inline ratings text-center" title="Ratings">
-                                <li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
-                                </li>
-                                <li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
-                                </li>
-                                <li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
-                                </li>
-                                <li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
-                                </li>
-                                <li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
-                                </li>
-                            </ul>
+                        <div class="col-md-4 text-center">
+                        <img src="/storage/profile_pics/{{$user->profile_pic}}" alt="" class="mx-auto rounded-circle img-fluid">
+
                         </div>
                         <div class="col-12 col-lg-4">
                             <h3 class="mb-0">{{count($posts)}}</h3>
                             <small>Napísané články</small>
                             @if (Auth::user())
-                            <a class="btn btn-block btn-outline-success" href="/users/{{auth()->user()->id}}/edit"><span class="fa fa-plus-circle"></span>  Upraviť profil</a>
+                            <a class="btn btn-block btn-outline-success" href="/users/{{auth()->user()->id}}/edit"><span class="fa fa-plus-circle mr-1"></span>  Upraviť profil</a>
+                            <a class="btn btn-block btn-outline-success" href="/lessons"><span class="fas fa-graduation-cap mr-2"></span>LearnIT</a>
                             @endif
 
                         </div>
@@ -79,7 +71,7 @@
                         </tr>
                         @foreach ($posts as $post )
                         <tr>
-                        <td>{{$post->title}}</td>
+                        <td><a href="posts/{{$post->slug}}">{{$post->title}}</a></td>
                         <td><a href="/posts/{{$post->id}}/edit" class="btn btn-light">Edit</a></td>
                             <td>{!! Form::open(['action'=> ['PostsController@destroy', $post->id, 'method'=> 'POST', 'class'=> 'pull-right']]) !!}
                                 {!! Form::hidden('_method', 'DELETE') !!}
@@ -91,11 +83,6 @@
                     @else
                     <p class="text-muted">Nemáš žiadne príspevky :(</p>
                 @endif
-
-
-
-
-
             </div>
         </div>
     </div>

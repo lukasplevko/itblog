@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 use App\Post;
-use Illuminate\Support\Facades\DB;
-use Symfony\Component\Console\Input\Input;
+use App\Curriculum;
+
 
 class PostsController extends Controller
 {
@@ -97,19 +97,31 @@ class PostsController extends Controller
             else if($request->input('theme')== 'js'){
                 $fileNameToStore = 'js.png';
             }
-            // else if($request->input('theme')== 'html'){
-            //     $fileNameToStore = 'html.png';
-            // }
+             else if($request->input('theme')== 'html'){
+                 $fileNameToStore = 'html.png';
+            }
             else if($request->input('theme')== 'undefined'){
                 $fileNameToStore = 'code.png';
             }
-
-
         }
 
 
 
+        if($request->has('series')){
+            $curriculum = new Curriculum;
+            $curriculum->title = $request->input('title');
+            $curriculum->body = $request->input('body');
+            $curriculum->user_id = auth()->user()->id;
+            $curriculum->user_name = auth()->user()->name;
+            $curriculum->cover_image = $fileNameToStore;
+            $curriculum->theme = $request->input('theme');
+            $curriculum->category = $request->input('category');
+            $curriculum->slug = Str::slug($curriculum->title, '-').time();
+            $curriculum->lesson = $request->input('lesson');
+            $curriculum->save();
+            return redirect('/lessons')->with('success', 'Článok upravený');
 
+        }else{
 
         //create post
         $post = new Post;
@@ -121,10 +133,10 @@ class PostsController extends Controller
         $post->theme = $request->input('theme');
         $post->category = $request->input('category');
         $post->slug = Str::slug($post->title, '-').time();
+
         $post->save();
-
-
         return redirect('/posts')->with('success', 'Článok vytvorený');
+        }
     }
 
     /**
@@ -170,11 +182,12 @@ class PostsController extends Controller
             'title' => 'required',
             'body' => 'required',
             'category' => 'required',
-            'theme' => 'required'
+            'theme' => 'required',
+            'cover_image' => 'image|nullable|max:1999',
 
         ]);
 
-            //Spracovanie uploadovaného suboru
+        //Spracovanie uploadovaného suboru
         if($request->hasFile('cover_image')){
             //Vytiahni subor s jeho koncovkou
             $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
@@ -190,6 +203,8 @@ class PostsController extends Controller
             //Upload obrazku
 
             $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+            $image = Image::make(public_path('storage/cover_images/'.$fileNameToStore))->fit(800,533);
+            $image->save();
         }
         else{
             if($request->input('theme')== 'laravel'){
@@ -201,18 +216,14 @@ class PostsController extends Controller
             else if($request->input('theme')== 'js'){
                 $fileNameToStore = 'js.png';
             }
-            // else if($request->input('theme')== 'html'){
-            //     $fileNameToStore = 'html.png';
-            // }
+            else if($request->input('theme')== 'html'){
+                 $fileNameToStore = 'html.png';
+             }
             else if($request->input('theme')== 'undefined'){
                 $fileNameToStore = 'code.png';
             }
-
-
         }
 
-        $imageLarge = Image::make(public_path('storage/cover_images/'.$fileNameToStore))->fit(800,533);
-        $imageLarge->save();
 
         $post = Post::find($id);
         $post->title =  $request->input('title');
@@ -224,10 +235,10 @@ class PostsController extends Controller
             $post->cover_image = $fileNameToStore;
         }
 
-
         $post->save();
+        return redirect('/posts')->with('success', 'Článok upravený');
 
-        return redirect('/posts')->with('success', 'Post Updated');
+
     }
 
     /**
@@ -238,7 +249,7 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::find($id)->first();
+        $post = Post::find($id);
         if(auth()->user()->id !== $post->user_id){
             return redirect('/posts')->with('error','Tento článok nie je možné odstrániť');
         }

@@ -10,42 +10,28 @@
     <title>Code_blog;</title>
 
 
-
-    <script src="{{asset('js/ckeditor.js')}}"></script>
-    <script src="{{asset('js/app.js') }}" defer></script>
-
-
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
     <!-- Styles -->
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset ('css/style.css')}}">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset ('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('font-awesome/css/all.css')}}">
 
-
-
-
+    <link href="{{asset('ckeditor/plugins/codesnippet/lib/highlight/styles/monokai.css')}}" rel="stylesheet">
+    <script src="{{asset('ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js')}}"></script>
 </head>
 <body>
 
 
         @include('inc.navbar')
-        <div class="container">
+        <div class="container mt-5 marbot">
             @include('inc.messages')
+            @include('cookieConsent::index')
+
             @yield('content')
+
         </div>
 
-
-
-
-
-
-
+    <script src="{{asset('js/app.js')}}"></script>
+        <script src="{{ asset('js/main.js') }}" defer></script>
+        <script>hljs.initHighlightingOnLoad();</script>
 </body>
-
-
-
-<script src="{{ asset('js/main.js') }}" defer></script>
 </html>

@@ -7,6 +7,7 @@ use Auth;
 use DB;
 use App\User;
 use App\Post;
+use App\Progress;
 use Intervention\Image\Facades\Image;
 
 class UsersController extends Controller
@@ -145,6 +146,22 @@ class UsersController extends Controller
             return redirect('/dashboard')->with('success', 'Profil aktualizovaný')->with('user', $user);
     }
 
+    public function saveProgress(Request $request){
+        $user_id= auth()->user()->id;
+        if($request->get('progress') == null){
+           Progress::where('lesson_id','=',$request->input('lesson_id'))->where('user_id', auth()->user()->id)->delete();
+           return redirect()->back();
+        }else{
+            $progress = new Progress;
+            $progress->user_id = auth()->user()->id;
+            $progress->lesson_id = $request->input('progress');
+            $progress->lesson = $request->input('lesson');
+            $progress->save();
+            return redirect()->back();
+        }
+
+
+    }
     /**
      * Remove the specified resource from storage.
      *

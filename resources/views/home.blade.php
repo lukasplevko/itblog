@@ -5,8 +5,8 @@
 
 
 
-            <div class="row top-content">
-              <div class="col-sm">
+            <div class="row ">
+              <div class="col-md-3">
                 <div class="timeline">
                     <h3>Chronológia</h3>
                     @if(!empty($posts_chron))
@@ -21,7 +21,7 @@
                     <a class="btn mt-3 mb-3 btn-light" href="/posts">Ďalšie články</a>
                     </div>
               </div>
-              <div class="col-sm latest">
+              <div class="col-md-6 latest">
                   <h3 class="display-4">Najnovší</h3>
                 @isset($latest)
                 <a class="latest" href="/posts/{{$latest->slug}}">
@@ -38,22 +38,6 @@
                   @else
                   <p>Nič sme nenašli</p>
                   @endisset
-
-
-              </div>
-              <div class="col-sm">
-                <div class="timeline">
-                    <h3>Najčítanejšie</h3>
-                    @if(!empty($posts_chron))
-                       @foreach ($posts_chron as $post_chron)
-                        <p>
-                        <a class="timeline-links" href="">{{$post_chron->title}}</a><br>
-                        <small>{{$post_chron->created_at}}</small>
-                        </p>
-
-                       @endforeach
-                    @endif
-                    </div>
               </div>
             </div>
             <hr>
@@ -61,15 +45,15 @@
 
 
 
-            <section class="row container">
+            <section class="row container justify-content-center">
             <div class="shadow-pop-br">
                 <a href="/posts/category/css" class="post-redirect ">
                     <div class="card ml-2 mb-2 article" style="width: 15rem;">
                         <img style=" width: 100%;" src="/storage/cover_images/css.png" class="card-img-top" alt="Obrázok článku">
                     </a>
                         <div class="card-body">
-                            <h5 class="card-title">CSS </h5>
-                                <p class="card-text">Tipy a triky v CSS</p>
+                            <h5 class="card-title">CSS</h5>
+                                <p class="card-text">Dizajnové šmaky</p>
                         </div>
 
                     </div>
@@ -82,7 +66,7 @@
                     </a>
                         <div class="card-body">
                             <h5 class="card-title">Laravel </h5>
-                                <p class="card-text">Všetko o Laraveli</p>
+                                <p class="card-text">Črevá aplikácie</p>
                         </div>
 
                     </div>
@@ -95,7 +79,7 @@
                     </a>
                         <div class="card-body">
                             <h5 class="card-title">Javascript </h5>
-                                <p class="card-text">Javascript basics</p>
+                                <p class="card-text">Všetky tie frajerinky</p>
                         </div>
 
                     </div>
@@ -107,8 +91,8 @@
                         <img style=" width: 100%;" src="/storage/cover_images/code.png" class="card-img-top" alt="Obrázok článku">
                     </a>
                         <div class="card-body">
-                            <h5 class="card-title">Code_blog; </h5>
-                                <p class="card-text">Novinky v tech</p>
+                            <h5 class="card-title">Code_talks; </h5>
+                                <p class="card-text">Vykecávačky</p>
                         </div>
 
                     </div>

@@ -1,14 +1,17 @@
 @extends('layout.app')
 @section('content')
-<h1 class="display-4">
-    {{{strtoupper($category)}}}
-</h1>
-<div class="d-flex flex-row flex-wrap align-content-center" >
-    @if (count($posts) > 0)
+@if (!empty($posts))
+
+    <h1 class="display-3">
+
+   </h1>
+<div class="ml-auto">
+<div class="row">
+
         @foreach ($posts as $post)
 
         <a href="/posts/{{$post->slug}}" class="post-redirect">
-            <div class="card ml-2 mb-2 article" style="width: 15rem;">
+            <div class="card ml-2 mb-2" style="width: 15rem;">
                 <img style=" width: 100%;" src="/storage/cover_images/{{$post->cover_image}}" class="card-img-top" alt="Obrázok článku">
             </a>
                 <div class="card-body">
@@ -34,11 +37,12 @@
 <div class="ml-3">
 {{$posts->links()}}
 </div>
+
 @else
-<h3 class="display-4">Nič som nenašiel :(</h3>
+<h3>Nič som nenašiel</h3>
 
+
+</div>
 @endif
-
-
 @endsection
 

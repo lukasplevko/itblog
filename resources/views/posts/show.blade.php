@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-<a href="{{ url()->previous() }}" class="btn btn-secondary mb-3">Späť</a>
+<a href="{{ url()->previous() }}" class="previous"><i class="fas fa-arrow-circle-left"></i>Predošlé</a>
 <h1>{{$post->title}}</h1>
 <div class="article">
     <img class="text-cover-img"  src="/storage/cover_images/{{$post->cover_image}}" alt="">
@@ -20,8 +20,12 @@
                         {{$post->user->user_descript}}
                         </p>
 
-                        <p> <span class="badge badge-info tags">Autor</span>
-                        </p>
+                         @if ($post->user->role == 'admin')
+                            <span class="badge badge-info tags">Administrátor</span>
+                        @else
+                            <span class="badge badge-info tags">Používateľ</span>
+                        @endif
+
                     </div>
                     <div class="col-12 col-lg-4 col-md-6 text-center">
                     <img src="/storage/profile_pics/{{$post->user->profile_pic}}" alt="" class="mx-auto rounded-circle img-fluid">
@@ -42,11 +46,11 @@
 
 @if(Auth::user() == $post->user)
 <div class="btn-group ">
-    <a href="/posts/{{$post->id}}/edit" class="btn btn-secondary ">Edit</a>
+    <a href="/posts/{{$post->id}}/edit" class="btn btn-dark ">Edit</a>
 
     {!! Form::open(['action'=> ['PostsController@destroy', $post->id, 'method'=> 'POST', 'class'=> 'pull-right']]) !!}
         {!! Form::hidden('_method', 'DELETE') !!}
-        {!! Form::submit('Delete', ['class'=>'btn btn-danger d-inline-flex ml-2']) !!}
+        {!! Form::submit('Vymazať', ['class'=>'btn btn-danger d-inline-flex ml-2']) !!}
     {!! Form::close() !!}
 </div>
 @endif
